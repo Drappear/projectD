@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.drappear.spr.mapper.BoardMapper">
+	
+	<select id="selectBoardList" resultType="com.drappear.spr.domain.BoardDto">
+		SELECT id, title, body, inserted FROM Board ORDER BY id DESC
+	</select>
+
+</mapper>

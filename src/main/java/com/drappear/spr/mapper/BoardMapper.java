@@ -8,4 +8,12 @@ public interface BoardMapper {
 
 	List<BoardDto> selectBoardList();
 
+	BoardDto selectBoardById(int id);
+
+	int insertBoard(BoardDto board);
+
+	int updateBoard(BoardDto board);
+
+	int deleteBoard(int id);
+
 }

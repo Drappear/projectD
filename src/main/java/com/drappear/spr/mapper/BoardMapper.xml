@@ -7,5 +7,20 @@
 	<select id="selectBoardList" resultType="com.drappear.spr.domain.BoardDto">
 		SELECT id, title, body, inserted FROM Board ORDER BY id DESC
 	</select>
-
+	
+	<select id="selectBoardById" resultType="com.drappear.spr.domain.BoardDto">
+		SELECT id, title, body, inserted FROM Board WHERE id = #{id}
+	</select>
+	
+	<insert id="insertBoard" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		INSERT INTO Board(title, body, inserted) VALUES(#{title}, #{body}, #{inserted})
+	</insert>
+	
+	<update id="updateBoard">
+		UPDATE Board SET title = #{title}, body = #{body} WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM Board WHERE id = #{id}
+	</delete>
 </mapper>

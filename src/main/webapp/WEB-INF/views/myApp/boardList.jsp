@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="dpr" tagdir="/WEB-INF/tags/myBoard" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,41 +12,48 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
 <title>Insert title here</title>
 </head>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col">head</div>
+<body style="padding-top:55px">
+	<header class="header">
+		<dpr:navBar></dpr:navBar>
+	</header>
+	<div class="row">
+		<div class="col-2" id="left" style="float:left; width:15%">
+			<dpr:sideBar></dpr:sideBar>
 		</div>
-		<div class="row">
-			<div class="col-2">left</div>
-			
-  			<div class="col-8">
-  				<h3>글 목록</h3>
-  				<table class="table table-hover">
-  					<thead>
-  						<tr>
-  							<th>ID</th>
-  							<th>제목</th>
-  							<th>작성일</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<c:forEach items="${boardList }" var="board">
-	  						<tr>
-  								<th>${board.id }</th>
-  								<td>${board.title }</td>
-  								<td>${board.inserted }</td>
-  							</tr>
-  						</c:forEach>
-  					</tbody>
-  				</table>
-  			</div>
-  			
-  			<div class="col-2">right</div>
-		</div>
-		<div class="row">
-			<div class="col">foot</div>
+		
+  		<div class="col-10" id="content" style="float:right; width:85%; padding:10px;">
+  			<h3>글 목록</h3>
+  			<table class="table table-hover">
+  				<thead>
+  					<tr>
+  						<th class="text-center" style="width:10%">ID</th>
+  						<th class="text-center" style="width:70%">제목</th>
+  						<th class="text-center" style="width:20%">작성일</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<c:forEach items="${boardList }" var="board">
+						<tr>
+  							<th class="text-center">${board.id }</th>
+  							<td>
+								<a href="${appRoot }/board/get/${board.id }">${board.title }</a>
+							</td>
+							<td class="text-center">${board.inserted }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div style="margin:30px 0px; display:flex; justify-content:center">
+				<form action="${appRoot }/board/write">
+ 					<button>글쓰기</button>
+				</form>
+			</div>
 		</div>
 	</div>
+	<footer class="footer mt-auto fixed-bottom py-3 bg-dark">
+  		<div class="container">
+   			<span class="text-muted">sticky footer content</span>
+ 		</div>
+	</footer>	
 </body>
 </html>

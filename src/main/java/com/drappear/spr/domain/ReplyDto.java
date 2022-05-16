@@ -5,11 +5,9 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class BoardDto {
+public class ReplyDto {
+	private int boardId;
 	private int id;
-	private String title;
-	private String body;
+	private String content;
 	private LocalDateTime inserted;
-	
-	private int numOfReply;
 }

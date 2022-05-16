@@ -37,22 +37,28 @@
   							<th class="text-center">${board.id }</th>
   							<td>
 								<a href="${appRoot }/board/get/${board.id }">${board.title }</a>
+								<c:if test="${board.numOfReply > 0 }">
+									<span class="badge bg-secondary">${board.numOfReply }</span>								
+								</c:if>
 							</td>
 							<td class="text-center">${board.inserted }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<div style="margin:30px 0px; display:flex; justify-content:center">
+			<div style="margin:30px; display:flex; justify-content:right">
 				<form action="${appRoot }/board/write">
  					<button>글쓰기</button>
 				</form>
+			</div>
+			<div class="row" >
+				<dpr:pagination></dpr:pagination>
 			</div>
 		</div>
 	</div>
 	<footer class="footer mt-auto fixed-bottom py-3 bg-dark">
   		<div class="container">
-   			<span class="text-muted">sticky footer content</span>
+   			<span class="text-muted">footer content</span>
  		</div>
 	</footer>	
 </body>

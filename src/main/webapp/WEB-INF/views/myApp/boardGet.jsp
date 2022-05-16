@@ -26,6 +26,34 @@
 			$("#btnForm").attr("action", "${appRoot}/board/delete");
 			$("#btnForm").submit();				
 		});
+		$(".reply-edit-btn").click(function() {
+			const replyId = $(this).attr("data-reply-id");
+			const editBtn = "#reply-edit-btn" + replyId;
+			const modBtn = "#reply-modify-btn" + replyId;
+			const replyDisplay = "#reply-content-display" + replyId;
+			const replyEditor = "#reply-content-editor" + replyId;
+			$(replyDisplay).hide();
+			$(editBtn).hide();
+			$(replyEditor).show();
+			$(modBtn).show();
+		});
+		$(".reply-modify-btn").click(function(e) {
+			e.preventDefault();
+			const replyId = $(this).attr("data-reply-id");
+			const replyFormId = "#reply-form" + replyId;
+			if(confirm("댓글을 수정하시겠습니까?")) {
+				$(replyFormId).attr("action", "${appRoot}/reply/update");
+				$(replyFormId).submit();
+			}
+		});
+		$(".reply-delete-btn").click(function() {
+			const replyId = $(this).attr("data-reply-id");
+			const replyFormId = "#reply-form" + replyId;
+			if(confirm("댓글을 삭제하시겠습니까?")) {
+				$(replyFormId).attr("action", "${appRoot}/reply/delete");
+				$(replyFormId).submit();
+			};
+		});
 	});
 </script>
 <body>
@@ -57,8 +85,41 @@
 	  					<button type="submit" id="btnBoardDelete">삭제</button>
   					</form>
   				</div>
+  				<hr />
+  				<div class="row" style="margin-bottom:30px">
+  					댓글
+  					<form action="${appRoot }/reply/add" method="post">
+  						<input type="hidden" name="boardId" value="${board.id }"/>
+	  					<input class="form-control" type="text" name="content" style="width:85%; float:left"/><button style="float:right">등록</button>
+  					</form>
+  				</div>
   				<div class="row">
-  					댓글<input type="text" />
+  					<ul class="list-group">
+	  					<c:forEach items="${replyList }" var="reply">
+	  						<li class="list-group-item">
+	  							<span id="reply-content-display${reply.id }">
+  									<span class="reply-content">
+										${reply.content }  		
+	  								</span>
+	  								<span>
+	  									${reply.inserted }
+	  								</span>
+	  							</span>
+	  							<span id="reply-content-editor${reply.id }" style="display:none">
+									<form id="reply-form${reply.id }" action="" method="post">
+										<input type="hidden" name="boardId" value="${board.id }"/>
+										<input type="hidden" name="id" value="${reply.id }"/>
+			  							<input class="form-control" type="text" name="content" value="${reply.content }" style="width:85%; float:left"/>
+									</form>
+	  							</span>
+								<span class="btn-group" style="float:right">
+		  							<button class="reply-modify-btn" id="reply-modify-btn${reply.id }" style="display:none" data-reply-id="${reply.id }">완료</button> 
+		  							<button class="reply-edit-btn" id="reply-edit-btn${reply.id }" data-reply-id="${reply.id }">수정</button> 
+		  							<button class="reply-delete-btn" id="reply-delete-btn${reply.id }" data-reply-id="${reply.id }">삭제</button>									
+								</span>							
+	  						</li>
+  						</c:forEach>
+  					</ul>
   				</div>
   			</div>
 		</div>

@@ -19,8 +19,9 @@ public class BoardService {
 	@Autowired
 	private ReplyMapper rMapper;
 	
-	public List<BoardDto> boardList() {
-		return bMapper.selectBoardList();
+	public List<BoardDto> boardList(int page, int rowPerPage) {
+		int from = (page-1) * rowPerPage;
+		return bMapper.selectBoardList(from, rowPerPage);
 	}
 
 	public BoardDto getBoard(int id) {
@@ -43,6 +44,10 @@ public class BoardService {
 		rMapper.deleteReplyByBoardId(id);
 		int cnt = bMapper.deleteBoard(id);
 		return cnt == 1;
+	}
+
+	public int getTotal() {
+		return bMapper.totalBoard();
 	}
 
 }

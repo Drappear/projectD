@@ -9,6 +9,7 @@
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
 		GROUP BY b.id 
 		ORDER BY b.id DESC
+		LIMIT #{from}, #{rowPerPage}
 	</select>
 	
 	<select id="selectBoardById" resultType="com.drappear.spr.domain.BoardDto">
@@ -26,4 +27,8 @@
 	<delete id="deleteBoard">
 		DELETE FROM Board WHERE id = #{id}
 	</delete>
+	
+	<select id="totalBoard" resultType="int">
+		SELECT Count(*) FROM Board
+	</select>
 </mapper>

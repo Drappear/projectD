@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.drappear.spr.domain.BoardDto;
+import com.drappear.spr.domain.PageDto;
 import com.drappear.spr.domain.ReplyDto;
 import com.drappear.spr.service.BoardService;
 import com.drappear.spr.service.ReplyService;
@@ -26,16 +28,19 @@ public class BoardController {
 	
 	// http://localhost:8080/spr/board/list
 	@GetMapping("list")
-	public String boardGetMainList(Model model) {
-		List<BoardDto> boardList = bService.boardList();		
+	public String boardGetMainList(@RequestParam(name="page", defaultValue = "1")int page, Model model) {
+		System.out.println("controller"+page);
+		PageDto pageDto = new PageDto();
+		pageDto.setTotalRecords(bService.getTotal());
+		List<BoardDto> boardList = bService.boardList(page, pageDto.getFixedPagePerList());	
+		pageDto.setCurrentPage(page);
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("pageInfo", pageDto);
 		return "/myApp/boardList";
 	}
 	
 	@PostMapping("list")
-	public String boardPostMainList(Model model) {
-		List<BoardDto> boardList = bService.boardList();		
-		model.addAttribute("boardList", boardList);
+	public String boardPostMainList() {
 		return "redirect:/board/list";
 	}
 	

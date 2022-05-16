@@ -6,7 +6,7 @@ import com.drappear.spr.domain.BoardDto;
 
 public interface BoardMapper {
 
-	List<BoardDto> selectBoardList();
+	List<BoardDto> selectBoardList(int from, int rowPerPage);
 
 	BoardDto selectBoardById(int id);
 
@@ -15,5 +15,7 @@ public interface BoardMapper {
 	int updateBoard(BoardDto board);
 
 	int deleteBoard(int id);
+
+	int totalBoard();
 
 }

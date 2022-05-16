@@ -12,11 +12,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
 <title>Insert title here</title>
 </head>
-<body style="padding-top:55px">
+<body>
 	<header class="header">
 		<dpr:navBar></dpr:navBar>
 	</header>
-	<div class="row">
+	<div class="row" style="padding-top:55px">
 		<div class="col-2" id="left" style="float:left; width:15%">
 			<dpr:sideBar></dpr:sideBar>
 		</div>

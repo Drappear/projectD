@@ -2,11 +2,13 @@ package com.drappear.spr.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.drappear.spr.domain.BoardDto;
 
 public interface BoardMapper {
 
-	List<BoardDto> selectBoardList(int from, int rowPerPage);
+	List<BoardDto> selectBoardList(@Param("from") int from, @Param("rowPerPage") int rowPerPage);
 
 	BoardDto selectBoardById(int id);
 

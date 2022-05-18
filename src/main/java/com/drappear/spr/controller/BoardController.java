@@ -26,14 +26,23 @@ public class BoardController {
 	@Autowired
 	private ReplyService rService;
 	
+	@GetMapping("main")
+	public String boardGetMain() {
+		return "/myApp/boardMain";
+	}
+	
+	@PostMapping("main")
+	public String boardPostMain() {
+		return "redirect:/board/main";
+	}
+	
 	// http://localhost:8080/spr/board/list
 	@GetMapping("list")
 	public String boardGetMainList(@RequestParam(name="page", defaultValue = "1")int page, Model model) {
-		System.out.println("controller"+page);
 		PageDto pageDto = new PageDto();
+		pageDto.setCurrentPage(page);
 		pageDto.setTotalRecords(bService.getTotal());
 		List<BoardDto> boardList = bService.boardList(page, pageDto.getFixedPagePerList());	
-		pageDto.setCurrentPage(page);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageInfo", pageDto);
 		return "/myApp/boardList";

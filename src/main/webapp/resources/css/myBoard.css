@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	height: auto;
+}
+
+div.container-wrapper {
+	min-width: 100vw;
+	min-height: 100vh;
+	width: auto;
+	height: auto;
+}
+
+header.main-header {
+	height: 55px;
+}
+
+div.content-container {
+	min-height: 100vh;
+	height: auto;
+}
+
+div.main-content {
+	float: right;
+	min-height: 100vh;
+}
+
+div.left-side {
+	float: left;
+	position: fixed;
+	height: 100vh;
+	width: 15%;
+	background: #212529;
+	z-index: -10000;
+	overflow: auto;
+}
+nav.left-side {
+	width: 15%;
+}
+
+div.main-content {
+	padding: 20px;
+	width: 80%;
+	min-height: auto;
+}
+
+footer.main-footer {
+	height: 50px;
+	position: relative;
+	clear: both;
+	text-align: center;
+}
+
+article.main-con-sec1-art1 {
+	width: 90%;
+	margin: 20px;
+}
+
+th.table-head-id, th.table-head-title, th.table-head-inserted {
+	text-align: center
+}
+
+div.submit-button-group {
+	margin: 30px;
+	display: flex;
+	justify-content: right;
+}
+
+.nav-link.active {
+    background-color: #198754;    
+  }
+.nav-link {
+	color: white;
+}
+#list-table td a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+#list-table td a:visited {
+	color: grey;
+	font-weight: lighter;
+}
+button {
+	margin: 1px;
+}
+
+.page-link {
+  color: black; 
+  background-color: #fff;
+  border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: black;
+ font-weight:bold;
+ background-color: #f1f1f1;
+ border-color: #ccc;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: black;
+  background-color: #fafafa; 
+  border-color: #ccc;
+}
+span.reply-content {
+	justify-content: left;
+}
+span.reply-inserted {
+	justify-content: right;
+}
+  

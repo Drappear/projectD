@@ -25,7 +25,7 @@
   	<c:if test="${pageInfo.currentPage != pageInfo.endPage }">
   		<li class="page-item">
   			<c:url value="${path }" var="link">
-  				<c:param name="page" value="${pageInfo.current + 1 }"></c:param>
+  				<c:param name="page" value="${pageInfo.currentPage + 1 }"></c:param>
   			</c:url>
    	 		<a class="page-link" href="${link }">
      			<span>&raquo;</span>
